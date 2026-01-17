@@ -1,27 +1,53 @@
+
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from "next/image";
 import { FaFacebook, FaGithub, FaInstagram } from "react-icons/fa";
 
 export default function Hero() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Hitung opacity berdasarkan scroll
+  const opacity = Math.max(1 - scrollY / 500, 0);
+  
   return (
     <section
-      className="
-        relative w-full 
-        py-20 sm:py-28 md:py-32 
-        text-black overflow-hidden
-      "
       id="home"
+      className="
+        fixed top-0 left-0
+        w-full h-screen
+        py-20 sm:py-28 md:py-32
+        text-black overflow-hidden
+        z-10
+      "
+      style={{ opacity }}
     >
 
-      {/* Background Halftone */}
-      <div className="absolute inset-0 -z-10 pointer-events-none">
+      {/* Background Halftone dengan Parallax */}
+      <div 
+        className="absolute inset-0 -z-10 pointer-events-none"
+        style={{
+          transform: `translateY(${scrollY * 0.5}px)`
+        }}
+      >
         <div
           className="
             absolute inset-0
             bg-[radial-gradient(circle,rgba(0,0,0,0.08)_1px,transparent_1px)]
-            bg-size-[14px_14px]
           "
+          style={{
+            backgroundSize: '14px 14px'
+          }}
         />
       </div>
 
@@ -38,18 +64,21 @@ export default function Hero() {
         "
       >
 
-        {/* LEFT TEXT */}
-        <div className="text-center md:text-left">
+        {/* LEFT TEXT dengan Parallax */}
+        <div 
+          className="text-center md:text-left"
+          style={{
+            transform: `translateY(${scrollY * 0.3}px)`
+          }}
+        >
           <h1
             className="
               text-4xl sm:text-5xl lg:text-6xl 
               font-black mb-4 leading-snug
             "
-            data-aos="fade-right"
-            data-aos-duration="800"
-            data-aos-once="false"
           >
-            Welcome to My Portfolio
+            Hi Im <span className="text-yellow-300">Canzy</span>
+             <br />A Frontend Developer
           </h1>
 
           <p
@@ -58,10 +87,6 @@ export default function Hero() {
               text-gray-800 
               max-w-md mx-auto md:mx-0
             "
-            data-aos="fade-right"
-            data-aos-delay="150"
-            data-aos-duration="800"
-            data-aos-once="false"
           >
             Discover my work and learn more about me.
           </p>
@@ -87,22 +112,12 @@ export default function Hero() {
                 transition-all
                 text-sm sm:text-base
               "
-              data-aos="fade-right"
-              data-aos-delay="300"
-              data-aos-duration="800"
-              data-aos-once="false"
             >
               Lets Go
             </a>
 
             {/* SOCIAL ICONS */}
-            <div
-              className="flex items-center gap-4 text-2xl sm:text-3xl"
-              data-aos="fade-right"
-              data-aos-delay="450"
-              data-aos-duration="800"
-              data-aos-once="false"
-            >
+            <div className="flex items-center gap-4 text-2xl sm:text-3xl">
               <a href="#" className="text-black hover:text-blue-600 transition-colors">
                 <FaFacebook />
               </a>
@@ -118,31 +133,19 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* RIGHT IMAGE */}
+        {/* RIGHT IMAGE dengan Parallax */}
         <div
           className="flex justify-center md:justify-end"
-          data-aos="zoom-in"
-          data-aos-duration="900"
-          data-aos-once="false"
+          style={{
+            transform: `translateY(${scrollY * 0.2}px) scale(${Math.max(1 - scrollY / 2000, 0.8)})`
+          }}
         >
           <Image
-            src="/img1.jpg"
+            src="/img2.png"
             alt="Your Portrait"
-            width={260}
-            height={260}
-            className="
-              w-[180px] h-[180px]
-              sm:w-[220px] sm:h-[220px]
-              md:w-[260px] md:h-[260px]
-              lg:w-[300px] lg:h-[300px]
-
-              rounded-full
-              border-8 md:border-10 border-black
-              shadow-[10px_10px_0px_#000]
-              hover:shadow-[14px_14px_0px_#000]
-              hover:-translate-x-1 hover:-translate-y-1
-              transition-all
-            "
+            width={660}
+            height={660}
+            className="w-full h-auto"
           />
         </div>
 

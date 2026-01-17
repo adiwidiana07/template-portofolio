@@ -3,16 +3,17 @@ import Image from "next/image";
 import Hero from "./components/hero";
 import About from "./components/about";
 import Projects from "./components/project";
-import Contact from "./components/contact";
+import Skills from "./components/skill";
 
 
 export default function Home() {
   return (
-    <main >
+    <main className="pt-[100vh]" >
       <Hero />
       <About />
+      <Skills />
       <Projects />
-      <Contact />
+
     </main>
   )
 }

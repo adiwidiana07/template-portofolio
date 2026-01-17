@@ -85,7 +85,7 @@ export default function About() {
             "
           >
             <Image
-              src="/img.jpg"
+              src="/img1.jpg"
               alt="Me"
               fill
               className="object-cover"

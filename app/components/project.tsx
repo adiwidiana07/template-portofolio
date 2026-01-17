@@ -9,19 +9,19 @@ export default function Projects() {
     {
       title: "Project One",
       desc: "A dynamic web experience inspired by bold comic visuals.",
-      img: "/img.jpg",
+      img: "/img1.jpg",
       link: "/projects/project-one",
     },
     {
       title: "Project Two",
       desc: "A creative UI exploration with expressive animations.",
-      img: "/img.jpg",
+      img: "/img1.jpg",
       link: "/projects/project-two",
     },
     {
       title: "Project Three",
       desc: "A stylish interactive page mixing art and technology.",
-      img: "/img.jpg",
+      img: "/img1.jpg",
       link: "/projects/project-three",
     },
   ];
